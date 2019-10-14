@@ -2,18 +2,79 @@
 <html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.bootcss.com/angular-material/1.1.17/angular-material.css" rel="stylesheet">
+    <link href="lib/angular-material/angular-material.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/wui.css" rel="stylesheet" type="text/css">
     <title>welcome</title>
 </head>
 <body >
-<md-card ng-controller="uploadController" >
-    {{upload}}<br/>
-    {{yy}}
-</md-card>
-<script src="https://cdn.bootcss.com/angular.js/1.7.8/angular.js"></script>
-<script src="https://cdn.bootcss.com/angular.js/1.7.8/angular-animate.js"></script>
-<script src="https://cdn.bootcss.com/angular.js/1.7.8/angular-aria.js"></script>
-<script src="https://cdn.bootcss.com/angular-material/1.1.17/angular-material.js"></script>
+<h1 align="center">welcome</h1>
+<div ng-controller="DemoController" layout="column" layout-padding ng-cloak>
+        <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>访客姓名</label>
+            <md-icon md-svg-src="img/account.svg" class="访客姓名"></md-icon>
+            <input ng-model="user.name" type="text" ng-required="true">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>被访人姓名</label>
+            <md-icon md-svg-src="img/account_visited.svg" class="被访人姓名"></md-icon>
+            <input ng-model="user.visited" type="text">
+        </md-input-container>
+
+        <md-input-container md-no-float class="md-block">
+            <md-icon md-svg-src="img/call.svg"></md-icon>
+            <input ng-model="user.phone" type="text" placeholder="联系电话" aria-label="Phone Number" ng-required="true">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <!-- Use floating placeholder instead of label -->
+            <md-icon md-svg-src="img/home.svg" class="company"></md-icon>
+            <input ng-model="user.company" type="company" placeholder="公司名称" ng-required="true"
+                   aria-label="company (required)">
+        </md-input-container>
+
+        <md-input-container md-no-float class="md-block">
+            <md-icon md-svg-src="img/star.svg" style="display:inline-block;"></md-icon>
+            <input ng-model="user.reason" type="text" placeholder="拜访缘由" >
+        </md-input-container>
+
+        <div lang="col">
+            <p>预计来访时间</p>
+            <div class="wui-area">
+                <wui-date
+                        format="yyyy-mm-dd hh:mm"
+                        placeholder="请选择或输入日期"
+                        id="start_date"
+                        btns="{'ok':'确定','now':'此刻'}"
+                        ng-model="user.startTime"
+                >
+                </wui-date>
+            </div>
+            <p>预计离开时间</p>
+            <div class="wui-area">
+                <wui-date
+                        format="yyyy-mm-dd hh:mm"
+                        placeholder="请选择或输入日期"
+                        id="end_date"
+                        btns="{'ok':'确定','now':'此刻'}"
+                        ng-model="user.endTime"
+                >
+                </wui-date>
+            </div>
+
+        </div>
+
+</div>
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/wui-date.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-aria/angular-aria.js"></script>
+<script src="lib/angular-material/angular-material.js"></script>
 <script src="js/guest.js"></script>
 </body>
 </html>
