@@ -5,6 +5,8 @@ import com.wm.guest.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @RestController
 public class GuestController {
 
@@ -15,15 +17,15 @@ public class GuestController {
     public String getUser(@PathVariable("id")long id){
         System.out.println(id);
         User user = guestService.getUser(id);
-        return user.getUsername();
+        return user.getGuest();
     }
 
-    @PostMapping("/event/add")
+    @PostMapping("/add")
     public String insert(@RequestBody User user){
-        System.out.println(user.getUsername());
-        user.setUsername("laowang");
-        user.setCar("12345");
-        user.setPhone("12345678901");
+        System.out.println(user.getGuest());
+        //user.setUsername("laowang");
+        //user.setCar("12345");
+        //user.setPhone("12345678901");
         int i = guestService.addEvent(user);
         return "welocme";
     }
