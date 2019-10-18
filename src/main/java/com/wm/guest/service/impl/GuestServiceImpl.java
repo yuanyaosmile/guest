@@ -26,9 +26,11 @@ public class GuestServiceImpl implements GuestService {
     public int addEvent(User user) {
         SimpleMailMessage mainMessage = new SimpleMailMessage();
         mainMessage.setFrom("15261852099@163.com");
+        //mainMessage.setTo("kingming0526@hotmail.com");
         mainMessage.setTo("15261852099@163.com");
-        mainMessage.setSubject("guest");
-        String context = user.getGuest() + "\n" + user.getVisited()+ "\n" +user.getPhone()+ "\n";
+        mainMessage.setSubject("客户拜访登记");
+        String context = "供应商名称： "+user.getCompany() + "\n 姓名：" + user.getGuest() + "\n 车牌：" + user.getCar() +
+                "\n 拜访时间： " +user.getStartTime() + "\n 缘由："+ user.getPurpose()+ "\n 接待人："+user.getVisited()+ "\n" ;
         mainMessage.setText(context);
         javaMailSender.send(mainMessage);
         return guestMapper.insert(user);
