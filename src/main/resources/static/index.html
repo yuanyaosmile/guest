@@ -7,9 +7,10 @@
     <link href="css/wui.css" rel="stylesheet" type="text/css">
     <title>welcome</title>
 </head>
-<body>
+<body ng-controller="DemoController">
 <h1 align="center">welcome</h1>
-<div layout="column" layout-padding ng-controller="DemoController" ng-cloak>
+
+<div layout="column" layout-padding  ng-cloak ng-show="showInput">
         <md-input-container class="md-icon-float md-block">
             <!-- Use floating label instead of placeholder -->
             <label>访客姓名</label>
@@ -84,7 +85,9 @@
             <md-button ng-click="add()" class="md-raised md-primary"> 提交</md-button>
         </div>
 </div>
-
+<div align="center" ng-show="!showInput">
+    <h2>欢迎光临爱普生</h2>
+</div>
 <script src="lib/jquery/jquery.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/wui-date.js"></script>

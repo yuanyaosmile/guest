@@ -3,6 +3,7 @@ package com.wm.guest.web;
 import com.wm.guest.entity.User;
 import com.wm.guest.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -20,8 +21,8 @@ public class GuestController {
     }
 
     @PostMapping("/add")
-    public String insert(@RequestBody User user){
-        int i = guestService.addEvent(user);
-        return "welcome";
+    public ResponseEntity<Void> insert(@RequestBody User user){
+        //int i = guestService.addEvent(user);
+        return ResponseEntity.ok().build();
     }
 }
