@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class GuestController {
@@ -22,7 +24,12 @@ public class GuestController {
 
     @PostMapping("/add")
     public ResponseEntity<Void> insert(@RequestBody User user){
-        //int i = guestService.addEvent(user);
+        int i = guestService.addEvent(user);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/getUsers")
+    public ResponseEntity<List<User>> getUsers(String name){
+        return ResponseEntity.ok(guestService.getUsers(name));
     }
 }

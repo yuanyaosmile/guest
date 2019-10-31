@@ -1,5 +1,6 @@
 package com.wm.guest.service.impl;
 
+import com.wm.guest.dao.EmailMapper;
 import com.wm.guest.dao.GuestMapper;
 import com.wm.guest.entity.User;
 import com.wm.guest.service.GuestService;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GuestServiceImpl implements GuestService {
@@ -17,6 +20,9 @@ public class GuestServiceImpl implements GuestService {
     @Autowired
     JavaMailSender javaMailSender;
 
+    @Autowired
+    EmailMapper emailMapper;
+
     @Override
     public User getUser(Long id) {
         return guestMapper.selectByPrimaryKey(id);
@@ -25,14 +31,27 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public int addEvent(User user) {
         SimpleMailMessage mainMessage = new SimpleMailMessage();
-        mainMessage.setFrom("15261852099@163.com");
+        String senderEmail = emailMapper.selectByPrimaryKey(1).getEmail();
+        String receiverEmail = emailMapper.selectByPrimaryKey(2).getEmail();
+        mainMessage.setFrom(senderEmail);
+        //mainMessage.setFrom("15261852099@163.com");
         //mainMessage.setTo("kingming0526@hotmail.com");
-        mainMessage.setTo("15261852099@163.com");
+        //mainMessage.setTo("15261852099@163.com");
+        mainMessage.setTo(receiverEmail);
         mainMessage.setSubject("客户拜访登记");
         String context = "供应商名称： "+user.getCompany() + "\n 姓名：" + user.getGuest() + "\n 车牌：" + user.getCar() +
                 "\n 拜访时间： " +user.getStartTime() + "\n 缘由："+ user.getPurpose()+ "\n 接待人："+user.getVisited()+ "\n" ;
         mainMessage.setText(context);
         javaMailSender.send(mainMessage);
         return guestMapper.insert(user);
+    }
+
+    @Override
+    public List<User> getUsers(String name) {
+        User user = new User();
+        user.setGuest(name);
+        List<User> users = guestMapper.select(user);
+        users.forEach(user1-> System.out.println(user1.toString()));
+        return null;
     }
 }

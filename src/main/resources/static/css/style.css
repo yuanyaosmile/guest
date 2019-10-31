@@ -8,3 +8,14 @@ p {
 li,p{
 	margin-bottom: 15px;
 }
+.table_center {
+	text-align: center;
+	border:1px solid black;
+	font-family:Arial;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+.md-tabs{
+	min-height: 2280px;
+}

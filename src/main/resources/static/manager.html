@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <link href="lib/angular-material/angular-material.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <title>manager</title>
+    <style>
+        #tabs{
+            min-height: 2800px;
+        }
+    </style>
+</head>
+<body ng-controller="ManagerController">
+<h1 align="center">Guest Management</h1>
+<md-card ng-show="!Auth">
+    <md-content>
+        <table align="center">
+            <tr>
+                <td><label>用户名</label></td>
+                <td><input name="manager" ng-model="manager.name" type="text" placeholder="请输入管理员用户名"/></td>
+            </tr>
+            <tr>
+                <td><label>密 &nbsp 码</label></td>
+                <td><input name="password" ng-model="manager.password" type="password" placeholder="请输入管理员密码"></td>
+            </tr>
+            <tr>
+                <td>
+                    <md-button ng-click="reset()" class="md-raised md-primary">reset</md-button>
+                </td>
+                <td align="right">
+                    <md-button ng-click="login()" class="md-raised md-primary">login</md-button>
+                </td>
+            </tr>
+        </table>
+    </md-content>
+</md-card>
+<md-content flex layout-padding>
+    <div ng-show="Auth">
+        <h3 align="right">welcome {{manager.name}}</h3>
+        <div ng-cloak>
+            <md-content>
+                <md-tabs id="tabs" class="md-primary md-tabs" md-center-tabs >
+                    <md-tab label="view">
+                        <md-content class="md-padding">
+                            <div layout="row" layout-sm="column" layout-align="center center">
+                                <input id="queryName" ng-model="queryName" placeholder="请输入姓名">
+                                <md-button class="md-raised md-primary" ng-click="selectByName(queryName)">按姓名查询</md-button>
+
+                               <!-- <md-button class="md-raised md-primary" ng-click="selectByDate()">按日期查询</md-button>-->
+
+                                <md-button class="md-raised md-primary" ng-click="selectAll()">查询&nbsp所有</md-button>
+                            </div>
+                            <div id="showAll" ng-show="showAll">
+                                <table  class="table_center" border="1">
+                                    <tr align="center">
+                                        <td>访客姓名</td>
+                                        <td>接待人员</td>
+                                        <td>联系电话</td>
+                                        <td>访客单位</td>
+                                        <td>访客车辆</td>
+                                        <td>拜访缘由</td>
+                                        <td>到达时间</td>
+                                        <td>离开时间</td>
+                                    </tr>
+                                    <tr ng-repeat="x in res">
+                                        <td>{{x.guest}}</td>
+                                        <td>{{x.visited}}</td>
+                                        <td>{{x.phone}}</td>
+                                        <td>{{x.company}}</td>
+                                        <td>{{x.car}}</td>
+                                        <td>{{x.purpose}}</td>
+                                        <td>{{x.startTime}}</td>
+                                        <td>{{x.endTime}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="management">
+                        <md-content class="md-padding">
+                            <div class="md-body-1" align="center">
+                                <md-button ng-click="checkEmails()">查询邮箱配置信息</md-button>
+                                <table ng-show="showEmails" >
+                                    <tr>
+                                        <td>发送者邮箱</td>
+                                        <td><input ng-model="sender.email" ></td>
+                                        <td><md-button ng-click="updateSender(sender.email)">更新</md-button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>接收者邮箱</td>
+                                        <td><input ng-model="receiver.email" ></td>
+                                        <td><md-button ng-click="updateReceiver(receiver.email)">更新</md-button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+</md-content>
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-aria/angular-aria.js"></script>
+<script src="lib/angular-material/angular-material.js"></script>
+<script src="js/manager.js"></script>
+</body>
+</html>

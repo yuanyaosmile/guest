@@ -10,12 +10,12 @@
 <body ng-controller="DemoController">
 <h1 align="center">welcome</h1>
 
-<div layout="column" layout-padding  ng-cloak ng-show="showInput">
+<div layout="column" layout-padding  ng-cloak ng-show="!showInput">
         <md-input-container class="md-icon-float md-block">
             <!-- Use floating label instead of placeholder -->
             <label>访客姓名</label>
             <md-icon md-svg-src="img/account.svg" class="访客姓名"></md-icon>
-            <input ng-model="user.guest" type="text" ng-required="true">
+            <input ng-model="user.guest" type="text" ng-required="true" >
         </md-input-container>
 
         <md-input-container class="md-icon-float md-block">
@@ -28,7 +28,8 @@
         <md-input-container md-no-float class="md-block">
             <label>联系电话</label>
             <md-icon md-svg-src="img/call.svg" class="联系电话"></md-icon>
-            <input ng-model="user.phone" type="text" ng-required="true">
+            <input ng-model="user.phone" type="text" ng-required="true" ng-minlength="11">
+            <span class="warning" ng-show="user.phone.$error.number">只能输入数字</span>
         </md-input-container>
 
         <md-input-container class="md-block">
@@ -85,7 +86,7 @@
             <md-button ng-click="add()" class="md-raised md-primary"> 提交</md-button>
         </div>
 </div>
-<div align="center" ng-show="!showInput">
+<div align="center" ng-show="showInput">
     <h2>欢迎光临爱普生</h2>
 </div>
 <script src="lib/jquery/jquery.js"></script>
