@@ -19923,7 +19923,7 @@ function GridListDirective($interpolate, $mdConstant, $mdGridLayout, $mdMedia, $
           // Base veritcal size of a row.
           var vUnit = UNIT({ share: vShare, gutterShare: hGutterShare, gutter: gutter });
 
-          // padidngTop and marginTop are used to maintain the given aspect ratio, as
+          // padidngTop and marginTop are used to maintain the given aop ratio, as
           // a percentage-based value for these properties is applied to the *width* of the
           // containing block. See http://www.w3.org/TR/CSS2/box.html#margin-properties
           style.paddingTop = DIMENSION({ unit: vUnit, span: spans.row, gutter: gutter});

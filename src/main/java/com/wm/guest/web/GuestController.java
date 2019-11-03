@@ -23,9 +23,12 @@ public class GuestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> insert(@RequestBody User user){
-        int i = guestService.addEvent(user);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> add(@RequestBody User user){
+        int i = guestService.addGuest(user);
+        if (i == 1)
+            return ResponseEntity.ok().build();
+        else
+            return ResponseEntity.status(500).build();
     }
 
     @GetMapping("/getUsers")

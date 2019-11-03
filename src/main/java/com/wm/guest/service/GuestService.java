@@ -7,7 +7,7 @@ import java.util.List;
 public interface GuestService {
     User getUser(Long id);
 
-    int addEvent(User user);
+    int addGuest(User user);
 
     List<User> getUsers(String name);
 }

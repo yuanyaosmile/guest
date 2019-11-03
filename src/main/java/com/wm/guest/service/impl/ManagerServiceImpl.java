@@ -57,6 +57,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public List<User> getAllGuest() {
+        guestMapper.selectAll().stream().forEach(user -> System.out.println(user.getStartTime()));
         return guestMapper.selectAll();
     }
 
