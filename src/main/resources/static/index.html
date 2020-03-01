@@ -9,13 +9,18 @@
 </head>
 <body ng-controller="DemoController">
 <h1 align="center">welcome</h1>
-
-<div layout="column" layout-padding  ng-cloak ng-show="!showInput">
+<form name="visitor_form" >
+    <div layout="column" layout-padding ng-cloak ng-show="!showInput">
         <md-input-container class="md-icon-float md-block">
             <!-- Use floating label instead of placeholder -->
             <label>访客姓名</label>
             <md-icon md-svg-src="img/account.svg" class="访客姓名"></md-icon>
-            <input ng-model="user.guest" type="text" ng-required="true" >
+            <input ng-model="user.guest" type="text" required guest>
+            <div ng-show="visitor_form.user.guest.$error.guest">
+                <span>
+                    访客姓名不能为空
+                </span>
+            </div>
         </md-input-container>
 
         <md-input-container class="md-icon-float md-block">
@@ -28,8 +33,10 @@
         <md-input-container md-no-float class="md-block">
             <label>联系电话</label>
             <md-icon md-svg-src="img/call.svg" class="联系电话"></md-icon>
-            <input ng-model="user.phone" type="text" ng-required="true" ng-minlength="11">
-            <span class="warning" ng-show="user.phone.$error.number">只能输入数字</span>
+            <input ng-model="user.phone" type="text" required phone>
+            <div ng-show="visitor_form.user.phone.$error.phone">
+                <span >请输入11位手机号码</span>
+            </div>
         </md-input-container>
 
         <md-input-container class="md-block">
@@ -52,10 +59,10 @@
             <input ng-model="user.purpose" type="text">
         </md-input-container>
 
-        <div layout="col" >
+        <div layout="col">
             <div flex="50">
-                    <h4>预计来访时间</h4>
-                <div class="wui-area" >
+                <h4>预计来访时间</h4>
+                <div class="wui-area">
                     <wui-date
                             format="yyyy-mm-dd hh:mm"
                             placeholder="请选择或输入日期"
@@ -67,27 +74,28 @@
                 </div>
             </div>
 
-           <div>
-               <h4>预计离开时间</h4>
-               <div class="wui-area">
-                   <wui-date
-                           format="yyyy-mm-dd hh:mm"
-                           placeholder="请选择或输入日期"
-                           id="end_date"
-                           btns="{'ok':'确定','now':'此刻'}"
-                           ng-model="user.endTime"
-                   >
-                   </wui-date>
-               </div>
-           </div>
+            <div>
+                <h4>预计离开时间</h4>
+                <div class="wui-area">
+                    <wui-date
+                            format="yyyy-mm-dd hh:mm"
+                            placeholder="请选择或输入日期"
+                            id="end_date"
+                            btns="{'ok':'确定','now':'此刻'}"
+                            ng-model="user.endTime"
+                    >
+                    </wui-date>
+                </div>
+            </div>
 
         </div>
         <div align="center">
             <md-button ng-click="add()" class="md-raised md-primary"> 提交</md-button>
         </div>
-</div>
+    </div>
+</form>
 <div align="center" ng-show="showInput">
-    <h2>欢迎光临爱普生</h2>
+    <h2>欢迎光临</h2>
 </div>
 <script src="lib/jquery/jquery.js"></script>
 <script src="lib/angular/angular.js"></script>

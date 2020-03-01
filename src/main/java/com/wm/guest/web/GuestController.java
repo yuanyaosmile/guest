@@ -27,6 +27,8 @@ public class GuestController {
         int i = guestService.addGuest(user);
         if (i == 1)
             return ResponseEntity.ok().build();
+        else if ( i == -1)
+            return ResponseEntity.status(501).build();
         else
             return ResponseEntity.status(500).build();
     }
